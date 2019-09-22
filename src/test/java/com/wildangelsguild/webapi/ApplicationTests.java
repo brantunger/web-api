@@ -1,4 +1,4 @@
-package com.webapi;
+package com.wildangelsguild.webapi;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

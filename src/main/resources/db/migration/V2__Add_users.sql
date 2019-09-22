@@ -1,0 +1,1 @@
+INSERT INTO users (USERNAME, PASSWORD, EMAIL, ROLE) VALUES ('admin', 'password', 'admin@wildangelsguild.com', 'ADMIN');
