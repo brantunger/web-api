@@ -1,7 +1,12 @@
 package com.wildangelsguild.webapi.service;
 
+import com.wildangelsguild.webapi.component.JwtTokenUtil;
+import com.wildangelsguild.webapi.exception.ResourceException;
 import com.wildangelsguild.webapi.model.User;
 import com.wildangelsguild.webapi.repository.UserRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,10 +19,17 @@ import java.util.ArrayList;
 public class JwtUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
+    private final JwtTokenUtil jwtTokenUtil;
 
-    public JwtUserDetailsService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public JwtUserDetailsService(UserRepository userRepository,
+                                 PasswordEncoder passwordEncoder,
+                                 AuthenticationManager authenticationManager,
+                                 JwtTokenUtil jwtTokenUtil) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenUtil = jwtTokenUtil;
     }
 
     @Override
@@ -30,7 +42,15 @@ public class JwtUserDetailsService implements UserDetailsService {
                 new ArrayList<>());
     }
 
+    public String createAuthenticationToken(String username, String password) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+        final UserDetails userDetails = loadUserByUsername(username);
+        return jwtTokenUtil.generateToken(userDetails);
+    }
+
     public User save(User user) {
+        if(userRepository.findByUsernameOrEmail(user.getUsername(), user.getEmail()) != null)
+            throw new ResourceException(HttpStatus.BAD_REQUEST, "{\n \"success\": false, \n \"message\": \"Duplicate Username or Email\" \n}");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
