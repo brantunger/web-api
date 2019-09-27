@@ -14,7 +14,7 @@ import java.util.function.Function;
 
 @Component
 public class JwtTokenUtil {
-    private static final long JWT_TOKEN_VALIDITY = 86400000; // 2 Days
+    private static final long JWT_TOKEN_VALIDITY = 172800000; // 2 Days
 
     @Value("${security.secret}")
     private String secret;
