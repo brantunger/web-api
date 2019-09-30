@@ -30,16 +30,17 @@ public class UserController {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/authenticate")
-    public ResponseEntity<JwtResponse> createAuthenticationToken(@RequestBody @Valid JwtRequest jwtRequest, BindingResult bindingResult) throws Exception {
-        ValidationUtils.processErrors(bindingResult);
-        final String token = jwtUserDetailsService.createAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword());
-        return new ResponseEntity<>(new JwtResponse(token), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @PostMapping(value = "/register")
     public ResponseEntity<User> registerUser(@RequestBody @Valid User user, BindingResult bindingResult) {
         ValidationUtils.processErrors(bindingResult);
         return new ResponseEntity<>(jwtUserDetailsService.save(user), HttpStatus.OK);
     }
+
+    @PostMapping(value = "/authenticate")
+    public ResponseEntity<JwtResponse> createAuthenticationToken(@RequestBody @Valid JwtRequest jwtRequest, BindingResult bindingResult) {
+        ValidationUtils.processErrors(bindingResult);
+        final String token = jwtUserDetailsService.createAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword());
+        return new ResponseEntity<>(new JwtResponse(token, jwtRequest.getUsername()), HttpStatus.OK);
+    }
+
 }
