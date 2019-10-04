@@ -7,7 +7,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 
 public class ValidationUtils {
-    public static final void processErrors(Errors errors) {
+    public static void processErrors(Errors errors) {
         if (!errors.hasErrors()) {
             return;
         }

@@ -45,11 +45,14 @@ public class JwtUserDetailsService implements UserDetailsService {
     public String createAuthenticationToken(String username, String password) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         final UserDetails userDetails = loadUserByUsername(username);
-        return jwtTokenUtil.generateToken(userDetails);
+        final String role = userRepository
+                .findByUsername(username)
+                .getRole();
+        return jwtTokenUtil.generateToken(userDetails, role);
     }
 
     public User save(User user) {
-        if(userRepository.findByUsernameOrEmail(user.getUsername(), user.getEmail()) != null)
+        if (userRepository.findByUsernameOrEmail(user.getUsername(), user.getEmail()) != null)
             throw new ResourceException(HttpStatus.BAD_REQUEST, "{\n \"success\": false, \n \"message\": \"Duplicate Username or Email\" \n}");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
