@@ -1,0 +1,2 @@
+INSERT INTO shout_message (USERNAME, MESSAGE, DATE_CREATED) VALUES ('admin', 'Hi I am an admin!', CURRENT_TIMESTAMP);
+INSERT INTO shout_message (USERNAME, MESSAGE, DATE_CREATED) VALUES ('admin', 'I am another message', CURRENT_TIMESTAMP);
