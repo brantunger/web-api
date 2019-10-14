@@ -13,13 +13,13 @@ plugins {
 }
 
 flyway {
-	url = 'jdbc:mysql://localhost:3306/wildangels?useSSL=false'
+	url = 'jdbc:mysql://localhost:3306/dreadfall?useSSL=false'
 	user = 'root'
 	password = 'password'
-	schemas = ['wildangels']
+	schemas = ['dreadfall']
 }
 
-group = 'com.wildangelsguild'
+group = 'com.dreadfallguild'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
