@@ -1,0 +1,2 @@
+INSERT INTO news (TITLE, CONTENT, CREATED_BY, DATE_CREATED) VALUES ('I am a new post!', 'I am some news content!', 'admin', CURRENT_TIMESTAMP);
+INSERT INTO news (TITLE, CONTENT, CREATED_BY, DATE_CREATED) VALUES ('I am another news post!', 'I am some news content!', 'admin', CURRENT_TIMESTAMP);
