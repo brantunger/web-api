@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -79,8 +80,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/actuator/**",
                         "/v1/user/authenticate",
                         "/v1/user/register",
-                        "/v1/shoutmessage",
                         "/ws/**")
+                .permitAll()
+                .antMatchers(HttpMethod.GET, "/v1/news")
+                .permitAll()
+                .antMatchers(HttpMethod.GET,"/v1/shoutmessage")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
