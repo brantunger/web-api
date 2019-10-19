@@ -1,13 +1,14 @@
 package com.dreadfallguild.webapi.controller;
 
+import com.dreadfallguild.webapi.controller.validation.ValidationUtils;
 import com.dreadfallguild.webapi.model.News;
 import com.dreadfallguild.webapi.service.NewsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,5 +23,11 @@ public class NewsController {
     @GetMapping
     public ResponseEntity<List<News>> getAllNews() {
         return new ResponseEntity<>(newsService.findAllOrderByDateCreatedDesc(), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<News> updateNews(@PathVariable Long id, @RequestBody @Valid News news, BindingResult bindingResult) {
+        ValidationUtils.processErrors(bindingResult);
+        return new ResponseEntity<>(newsService.updateNews(id, news), HttpStatus.ACCEPTED);
     }
 }

@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
@@ -18,12 +21,17 @@ public class News {
     @Column(name = "NEWS_ID")
     private Long newsId;
 
+    @NotEmpty
+    @NotBlank
     @Column(name = "TITLE")
     private String title;
 
+    @NotEmpty
+    @NotBlank
     @Column(name = "CONTENT")
     private String content;
 
+    @NotNull
     @Column(name = "VOTES")
     private Long votes;
 
