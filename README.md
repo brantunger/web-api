@@ -1,6 +1,9 @@
 # Web Api
 Backend RESTful API for Website
 
+### Dependencies
+Setup annotation processing and install lombok plugin in intelliJ.
+
 # Setup Database Container
 To setup a local database image make sure docker is installed and running. Then execute the following command to download and run MySQL:  
 
@@ -28,4 +31,3 @@ To login to the local database from a mysql client or GUI Database tool you can 
 Username: root
 Password: password
 ```
-
