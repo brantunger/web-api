@@ -19,5 +19,5 @@ logging:
   level:
     root: INFO
     com:
-      dreadfallguild:
+      dreadfall:
         webapi: TRACE
