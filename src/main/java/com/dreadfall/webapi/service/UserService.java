@@ -16,7 +16,7 @@ public class UserService {
 
     public List<User> getAllUsers() {
         List<User> users = userRepository.findAll();
-        users.stream().forEach(x -> x.setPassword("PROTECTED"));
+        users.forEach(x -> x.setPassword("PROTECTED"));
         return users;
     }
 }

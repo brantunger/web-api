@@ -1,4 +1,4 @@
-package com.dreadfall.webapi;
+package com.dreadfall.webapi.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;

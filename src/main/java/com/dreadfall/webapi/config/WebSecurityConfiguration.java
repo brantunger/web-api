@@ -1,4 +1,4 @@
-package com.dreadfall.webapi;
+package com.dreadfall.webapi.config;
 
 import com.dreadfall.webapi.component.JwtAuthenticationEntryPoint;
 import com.dreadfall.webapi.component.JwtRequestFilter;
