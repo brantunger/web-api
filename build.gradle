@@ -13,7 +13,7 @@ plugins {
 }
 
 flyway {
-	url = 'jdbc:mysql://localhost:3306/dreadfall?useSSL=false'
+	url = 'jdbc:mysql://localhost:3306/dreadfall'
 	user = 'root'
 	password = 'password'
 	schemas = ['dreadfall']
