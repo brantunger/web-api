@@ -4,12 +4,11 @@ import com.dreadfall.webapi.model.ShoutMessage;
 import com.dreadfall.webapi.request.ShoutRequest;
 import com.dreadfall.webapi.response.ShoutResponse;
 import com.dreadfall.webapi.service.ShoutMessageService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.HtmlUtils;
 
@@ -33,7 +32,7 @@ public class ShoutController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ShoutMessage>> getAllShoutMessages() {
-        return new ResponseEntity<>(shoutMessageService.getAllShoutMessages(), HttpStatus.OK);
+    public @ResponseBody List<ShoutMessage> getAllShoutMessages() {
+        return shoutMessageService.getAllShoutMessages();
     }
 }

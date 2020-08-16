@@ -31,4 +31,15 @@ public class NewsService {
 
         return newsRepository.save(news.get());
     }
+
+    public News updateVoteCount(Long newsId, Long voteCount) {
+        final Optional<News> news = newsRepository.findById(newsId);
+        if (!news.isPresent()) {
+            throw new RuntimeException(String.format("News story with id: %d doesn't exist!", newsId));
+        }
+
+        news.get().setVotes(voteCount);
+
+        return newsRepository.save(news.get());
+    }
 }
