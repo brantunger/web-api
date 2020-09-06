@@ -8,7 +8,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/v1/news", produces = "application/json")
+@RequestMapping(value = "/v1/news")
 public class NewsController {
     private final NewsService newsService;
 
@@ -17,8 +17,18 @@ public class NewsController {
     }
 
     @GetMapping
-    public @ResponseBody List<News> getAllNews() {
+    public @ResponseBody List<News> findAllOrderByDateCreatedDesc() {
         return newsService.findAllOrderByDateCreatedDesc();
+    }
+
+    @GetMapping("{/id}")
+    public @ResponseBody News findById(@RequestParam("id") Long id) {
+        return newsService.findById(id);
+    }
+
+    @PostMapping
+    public @ResponseBody News addNews(@RequestBody @Valid News news) {
+        return newsService.addNews(news);
     }
 
     @PutMapping("/{id}")
@@ -26,6 +36,7 @@ public class NewsController {
         return newsService.updateNews(id, news);
     }
 
+    // TODO: Possibly refactor to use above put mapping?
     @PutMapping()
     public @ResponseBody News updateVoteCount(@RequestParam(name = "id") Long id, @RequestParam(name = "voteCount") Long voteCount) {
         return newsService.updateVoteCount(id, voteCount);

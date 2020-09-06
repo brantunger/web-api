@@ -15,14 +15,27 @@ public class NewsService {
         this.newsRepository = newsRepository;
     }
 
+    public News findById(Long id) {
+        final Optional<News> news = newsRepository.findById(id);
+        if (!news.isPresent()) {
+            throw new RuntimeException(String.format("News story with id: %d doesn't exist!", id));
+        }
+
+        return news.get();
+    }
+
     public List<News> findAllOrderByDateCreatedDesc() {
         return newsRepository.findAllOrderByDateCreatedDesc();
     }
 
-    public News updateNews(Long newsId, News newsRequest) {
-        final Optional<News> news = newsRepository.findById(newsId);
+    public News addNews(News news) {
+        return newsRepository.save(news);
+    }
+
+    public News updateNews(Long id, News newsRequest) {
+        final Optional<News> news = newsRepository.findById(id);
         if (!news.isPresent()) {
-            throw new RuntimeException(String.format("News story with id: %d doesn't exist!", newsId));
+            throw new RuntimeException(String.format("News story with id: %d doesn't exist!", id));
         }
 
         news.get().setTitle(newsRequest.getTitle());
@@ -32,10 +45,10 @@ public class NewsService {
         return newsRepository.save(news.get());
     }
 
-    public News updateVoteCount(Long newsId, Long voteCount) {
-        final Optional<News> news = newsRepository.findById(newsId);
+    public News updateVoteCount(Long id, Long voteCount) {
+        final Optional<News> news = newsRepository.findById(id);
         if (!news.isPresent()) {
-            throw new RuntimeException(String.format("News story with id: %d doesn't exist!", newsId));
+            throw new RuntimeException(String.format("News story with id: %d doesn't exist!", id));
         }
 
         news.get().setVotes(voteCount);

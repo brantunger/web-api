@@ -82,9 +82,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/v1/user/register",
                         "/ws/**")
                 .permitAll()
-                .antMatchers(HttpMethod.GET, "/v1/news")
-                .permitAll()
-                .antMatchers(HttpMethod.GET,"/v1/shoutmessage")
+                .antMatchers(HttpMethod.GET)
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()

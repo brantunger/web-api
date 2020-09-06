@@ -2,9 +2,7 @@ package com.dreadfall.webapi.service;
 
 import com.dreadfall.webapi.model.User;
 import com.dreadfall.webapi.component.JwtTokenUtil;
-import com.dreadfall.webapi.exception.ResourceException;
 import com.dreadfall.webapi.repository.UserRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -53,7 +51,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     public User save(User user) {
         if (userRepository.findByUsernameOrEmail(user.getUsername(), user.getEmail()) != null)
-            throw new ResourceException(HttpStatus.BAD_REQUEST, "{\n \"success\": false, \n \"message\": \"Duplicate Username or Email\" \n}");
+            throw new RuntimeException("Duplicate Username or Email");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }

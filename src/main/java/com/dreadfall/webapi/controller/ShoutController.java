@@ -15,7 +15,7 @@ import org.springframework.web.util.HtmlUtils;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/v1/shoutmessage", produces = "application/json")
+@RequestMapping(value = "/v1/shoutmessage")
 public class ShoutController {
     private final ShoutMessageService shoutMessageService;
 

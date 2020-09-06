@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -25,22 +24,18 @@ public class User implements UserDetails {
     @Column(name = "USER_ID")
     private Long userId;
 
-    @NotEmpty
     @NotBlank
     @Column(name = "USERNAME")
     private String username;
 
-    @NotEmpty
     @NotBlank
     @Column(name = "PASSWORD")
     private String password;
 
-    @NotEmpty
     @NotBlank
     @Column(name = "EMAIL")
     private String email;
 
-    @NotEmpty
     @NotBlank
     @Column(name = "ROLE")
     private String role;

@@ -1,4 +1,4 @@
-CREATE TABLE users
+-CREATE TABLE users
 (
     USER_ID int NOT NULL AUTO_INCREMENT,
     USERNAME varchar(50) NOT NULL,

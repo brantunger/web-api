@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/v1/user", produces = "application/json")
+@RequestMapping(value = "/v1/user")
 public class UserController {
     private final UserService userService;
     private final JwtUserDetailsService jwtUserDetailsService;

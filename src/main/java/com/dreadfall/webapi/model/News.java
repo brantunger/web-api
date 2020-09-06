@@ -3,6 +3,7 @@ package com.dreadfall.webapi.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -21,23 +22,23 @@ public class News {
     @Column(name = "NEWS_ID")
     private Long newsId;
 
-    @NotEmpty
     @NotBlank
     @Column(name = "TITLE")
     private String title;
 
-    @NotEmpty
     @NotBlank
     @Column(name = "CONTENT")
     private String content;
 
     @NotNull
     @Column(name = "VOTES")
-    private Long votes;
+    private Long votes = 0L;
 
+    @NotBlank
     @Column(name = "CREATED_BY")
     private String createdBy;
 
+    @CreatedDate
     @Column(name = "DATE_CREATED")
     private Date dateCreated;
 }
