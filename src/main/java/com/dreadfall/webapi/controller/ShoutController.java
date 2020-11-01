@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.HtmlUtils;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,7 +26,7 @@ public class ShoutController {
 
     @MessageMapping("/shout")
     @SendTo("/topic/shoutmessage")
-    public ShoutResponse shout(ShoutRequest shoutRequest) {
+    public ShoutResponse shout(@Valid ShoutRequest shoutRequest) {
         shoutMessageService.saveShoutMessage(shoutRequest);
         String shoutContent = String.format("%s: %s", shoutRequest.getName(), shoutRequest.getMessage());
         return new ShoutResponse(HtmlUtils.htmlEscape(shoutContent));

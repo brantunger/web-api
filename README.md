@@ -9,12 +9,7 @@ To setup a local database image make sure docker is installed and running. Then 
 
 `docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=dreadfall mysql:latest`
 
-To initialize the database run:
-```
-./gradlew flywayClean
-./gradlew flywayMigrate
-```
-This will create several tables populated with data. You can now login to the frontend using the credentials with the role of **ADMIN**:
+To initialize the database run the application and Flyway will run DB migrations. This will create several tables populated with data. You can now login to the frontend using the credentials with the role of **ADMIN**:
 ```
 Username: admin
 Password: password
