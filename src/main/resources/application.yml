@@ -1,4 +1,4 @@
-spring.application.name: webapi
+spring.application.name: dreadfall-api
 
 spring:
   flyway:
