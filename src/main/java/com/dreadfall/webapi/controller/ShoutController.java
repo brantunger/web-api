@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/v1/shoutmessage")
+@RequestMapping(value = "/api/v1/shoutmessage")
 public class ShoutController {
     private final ShoutMessageService shoutMessageService;
 

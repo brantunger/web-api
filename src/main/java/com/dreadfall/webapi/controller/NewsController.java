@@ -8,7 +8,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/v1/news")
+@RequestMapping(value = "/api/v1/news")
 public class NewsController {
     private final NewsService newsService;
 
