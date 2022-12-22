@@ -1,15 +1,15 @@
 package com.dreadfall.webapi.service;
 
 import com.dreadfall.webapi.model.ShoutMessage;
-import com.dreadfall.webapi.request.ShoutRequest;
 import com.dreadfall.webapi.repository.ShoutMessageRepository;
+import com.dreadfall.webapi.request.ShoutRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
 public class ShoutMessageService {
+
     private final ShoutMessageRepository shoutMessageRepository;
 
     public ShoutMessageService(ShoutMessageRepository shoutMessageRepository) {

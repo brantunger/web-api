@@ -2,6 +2,7 @@ package com.dreadfall.webapi.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -11,11 +12,12 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table(name = "NEWS")
 public class News {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "NEWS_ID")

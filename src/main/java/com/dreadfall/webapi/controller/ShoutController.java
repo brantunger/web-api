@@ -18,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/v1/shoutmessage")
 public class ShoutController {
+
     private final ShoutMessageService shoutMessageService;
 
     public ShoutController(ShoutMessageService shoutMessageService) {

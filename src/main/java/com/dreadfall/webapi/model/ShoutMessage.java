@@ -15,6 +15,7 @@ import java.util.Date;
 @Table(name = "SHOUT_MESSAGE")
 @EntityListeners(AuditingEntityListener.class)
 public class ShoutMessage {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MESSAGE_ID")

@@ -11,6 +11,7 @@ import java.io.Serializable;
 
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Serializable {
+
     private static final String TOKEN_UNAUTHORIZED = "Access Denied";
 
     @Override

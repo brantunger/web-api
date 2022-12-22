@@ -1,7 +1,7 @@
 package com.dreadfall.webapi.service;
 
-import com.dreadfall.webapi.model.User;
 import com.dreadfall.webapi.component.JwtTokenUtil;
+import com.dreadfall.webapi.model.User;
 import com.dreadfall.webapi.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;

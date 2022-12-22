@@ -16,6 +16,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
+
 security:
   secret: m8BhRrJz7NxCxHyyp14XKPwuvk89apIW8IN9w1rGTkDgRwE9HtRnWkWPv8kVklGT
   allowed:

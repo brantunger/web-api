@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/v1/user")
 public class UserController {
+
     private final UserService userService;
     private final JwtUserDetailsService jwtUserDetailsService;
 

@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @Service
 public class NewsService {
+
     private final NewsRepository newsRepository;
 
     public NewsService(NewsRepository newsRepository) {

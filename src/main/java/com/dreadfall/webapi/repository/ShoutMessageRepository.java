@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ShoutMessageRepository extends CrudRepository<ShoutMessage, Long> {
+
     List<ShoutMessage> findAll();
 }
