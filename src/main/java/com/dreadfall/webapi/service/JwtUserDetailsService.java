@@ -1,10 +1,7 @@
 package com.dreadfall.webapi.service;
 
-import com.dreadfall.webapi.component.JwtTokenUtil;
 import com.dreadfall.webapi.model.User;
 import com.dreadfall.webapi.repository.UserRepository;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,17 +15,11 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final AuthenticationManager authenticationManager;
-    private final JwtTokenUtil jwtTokenUtil;
 
     public JwtUserDetailsService(UserRepository userRepository,
-                                 PasswordEncoder passwordEncoder,
-                                 AuthenticationManager authenticationManager,
-                                 JwtTokenUtil jwtTokenUtil) {
+                                 PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        this.authenticationManager = authenticationManager;
-        this.jwtTokenUtil = jwtTokenUtil;
     }
 
     @Override
@@ -39,15 +30,6 @@ public class JwtUserDetailsService implements UserDetailsService {
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 new ArrayList<>());
-    }
-
-    public String createAuthenticationToken(String username, String password) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        final UserDetails userDetails = loadUserByUsername(username);
-        final String role = userRepository
-                .findByUsername(username)
-                .getRole();
-        return jwtTokenUtil.generateToken(userDetails, role);
     }
 
     public User save(User user) {

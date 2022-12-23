@@ -18,7 +18,7 @@ public class NewsService {
 
     public News findById(Long id) {
         final Optional<News> news = newsRepository.findById(id);
-        if (!news.isPresent()) {
+        if (news.isEmpty()) {
             throw new RuntimeException(String.format("News story with id: %d doesn't exist!", id));
         }
 
@@ -35,7 +35,7 @@ public class NewsService {
 
     public News updateNews(Long id, News newsRequest) {
         final Optional<News> news = newsRepository.findById(id);
-        if (!news.isPresent()) {
+        if (news.isEmpty()) {
             throw new RuntimeException(String.format("News story with id: %d doesn't exist!", id));
         }
 
@@ -48,7 +48,7 @@ public class NewsService {
 
     public News updateVoteCount(Long id, Long voteCount) {
         final Optional<News> news = newsRepository.findById(id);
-        if (!news.isPresent()) {
+        if (news.isEmpty()) {
             throw new RuntimeException(String.format("News story with id: %d doesn't exist!", id));
         }
 

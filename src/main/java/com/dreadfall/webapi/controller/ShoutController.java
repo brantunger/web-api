@@ -8,7 +8,6 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.HtmlUtils;
 
@@ -34,7 +33,7 @@ public class ShoutController {
     }
 
     @GetMapping
-    public @ResponseBody List<ShoutMessage> getAllShoutMessages() {
+    public List<ShoutMessage> getAllShoutMessages() {
         return shoutMessageService.getAllShoutMessages();
     }
 }

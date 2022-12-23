@@ -18,28 +18,28 @@ public class NewsController {
     }
 
     @GetMapping
-    public @ResponseBody List<News> findAllOrderByDateCreatedDesc() {
+    public List<News> findAllOrderByDateCreatedDesc() {
         return newsService.findAllOrderByDateCreatedDesc();
     }
 
-    @GetMapping("{/id}")
-    public @ResponseBody News findById(@RequestParam("id") Long id) {
+    @GetMapping("/{id}")
+    public News findById(@RequestParam("id") Long id) {
         return newsService.findById(id);
     }
 
     @PostMapping
-    public @ResponseBody News addNews(@RequestBody @Valid News news) {
+    public News addNews(@RequestBody @Valid News news) {
         return newsService.addNews(news);
     }
 
     @PutMapping("/{id}")
-    public @ResponseBody News updateNews(@PathVariable Long id, @RequestBody @Valid News news) {
+    public News updateNews(@PathVariable Long id, @RequestBody @Valid News news) {
         return newsService.updateNews(id, news);
     }
 
     // TODO: Possibly refactor to use above put mapping?
     @PutMapping()
-    public @ResponseBody News updateVoteCount(@RequestParam(name = "id") Long id, @RequestParam(name = "voteCount") Long voteCount) {
+    public News updateVoteCount(@RequestParam(name = "id") Long id, @RequestParam(name = "voteCount") Long voteCount) {
         return newsService.updateVoteCount(id, voteCount);
     }
 }
