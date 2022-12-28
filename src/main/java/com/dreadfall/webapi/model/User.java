@@ -3,6 +3,7 @@ package com.dreadfall.webapi.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,9 +15,10 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "USERS")
 public class User implements UserDetails {
 
@@ -71,3 +73,5 @@ public class User implements UserDetails {
         return true;
     }
 }
+
+

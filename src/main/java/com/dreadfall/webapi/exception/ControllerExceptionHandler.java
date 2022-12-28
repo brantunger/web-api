@@ -15,4 +15,9 @@ public class ControllerExceptionHandler {
     public ResponseEntity<Map<String, String>> unauthorizedException(Exception ex, WebRequest request) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", ex.getMessage()));
     }
+
+    @ExceptionHandler(value = DuplicateUsernameException.class)
+    public ResponseEntity<Map<String, String>> duplicateUsernameException(Exception ex, WebRequest request) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", ex.getMessage()));
+    }
 }

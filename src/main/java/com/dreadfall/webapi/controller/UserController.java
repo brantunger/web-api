@@ -1,5 +1,6 @@
 package com.dreadfall.webapi.controller;
 
+import com.dreadfall.webapi.exception.DuplicateUsernameException;
 import com.dreadfall.webapi.model.User;
 import com.dreadfall.webapi.request.AuthenticationRequest;
 import com.dreadfall.webapi.response.AuthenticationResponse;
@@ -27,10 +28,10 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-//    @PostMapping(value = "/register")
-//    public @ResponseBody User registerUser(@RequestBody @Valid User user) {
-//        return jwtUserDetailsService.save(user);
-//    }
+    @PostMapping(value = "/register")
+    public @ResponseBody User registerUser(@RequestBody @Valid User user) throws DuplicateUsernameException {
+        return userService.save(user);
+    }
 
     @PostMapping(value = "/authenticate")
     public AuthenticationResponse createAuthenticationToken(@RequestBody @Valid AuthenticationRequest authenticationRequest) {

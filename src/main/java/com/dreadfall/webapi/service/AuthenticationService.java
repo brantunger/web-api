@@ -1,14 +1,12 @@
 package com.dreadfall.webapi.service;
 
 import com.dreadfall.webapi.exception.UnauthorizedException;
+import com.dreadfall.webapi.model.User;
 import com.dreadfall.webapi.request.AuthenticationRequest;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class AuthenticationService {
@@ -35,7 +33,7 @@ public class AuthenticationService {
             throw new UnauthorizedException("Incorrect User/Password");
         }
 
-        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(username);
+        final User userDetails = (User) jwtUserDetailsService.loadUserByUsername(username);
 
         return jwtTokenService.generateToken(userDetails);
     }
