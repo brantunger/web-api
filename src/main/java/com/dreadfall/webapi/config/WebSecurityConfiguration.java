@@ -45,17 +45,18 @@ public class WebSecurityConfiguration {
         configuration.setAllowedMethods(List.of("*"));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(List.of("*"));
-//        configuration.setExposedHeaders(List.of("X-Get-Header"));
         configuration.setMaxAge(3600L);
 
         return httpSecurity.cors().configurationSource(request -> configuration)
                 .and()
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/actuator/**",
+                .authorizeHttpRequests(auth -> auth.requestMatchers(
+                                "/actuator/**",
                                 "/api/v1/user/authenticate",
                                 "/api/v1/user/register",
                                 "/ws/**").permitAll()
-                        .requestMatchers(HttpMethod.GET).permitAll())
+                        .requestMatchers(HttpMethod.GET).permitAll()
+                        .anyRequest().authenticated())
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

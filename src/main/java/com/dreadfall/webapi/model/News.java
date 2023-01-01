@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -15,6 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "NEWS")
+@EntityListeners(AuditingEntityListener.class)
 public class News {
 
     @Id
@@ -34,7 +37,7 @@ public class News {
     @Column(name = "VOTES")
     private Long votes = 0L;
 
-    @NotBlank
+    @CreatedBy
     @Column(name = "CREATED_BY")
     private String createdBy;
 
