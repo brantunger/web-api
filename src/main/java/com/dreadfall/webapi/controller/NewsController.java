@@ -23,7 +23,7 @@ public class NewsController {
     }
 
     @GetMapping("/{id}")
-    public News findById(@RequestParam("id") Long id) {
+    public News findById(@PathVariable("id") Long id) {
         return newsService.findById(id);
     }
 
@@ -39,7 +39,7 @@ public class NewsController {
 
     // TODO: Possibly refactor to use above put mapping?
     @PutMapping()
-    public News updateVoteCount(@RequestParam(name = "id") Long id, @RequestParam(name = "voteCount") Long voteCount) {
+    public News updateVoteCount(@RequestParam("id") Long id, @RequestParam("voteCount") Long voteCount) {
         return newsService.updateVoteCount(id, voteCount);
     }
 }

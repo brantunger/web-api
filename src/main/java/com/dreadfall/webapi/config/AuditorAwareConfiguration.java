@@ -14,11 +14,8 @@ public class AuditorAwareConfiguration {
 
     @Bean
     public AuditorAware<String> auditorProvider() {
-
-        /*
-          if you are using spring security, you can get the currently logged username with following code segment.
-          SecurityContextHolder.getContext().getAuthentication().getName()
-         */
-        return () -> Optional.of(SecurityContextHolder.getContext().getAuthentication().getName());
+        String user = SecurityContextHolder.getContext().getAuthentication() != null ?
+                SecurityContextHolder.getContext().getAuthentication().getName() : "Unknown";
+        return () -> Optional.of(user);
     }
 }

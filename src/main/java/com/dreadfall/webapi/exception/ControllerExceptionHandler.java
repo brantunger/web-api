@@ -1,5 +1,6 @@
 package com.dreadfall.webapi.exception;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -16,8 +17,8 @@ public class ControllerExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", ex.getMessage()));
     }
 
-    @ExceptionHandler(value = DuplicateUsernameException.class)
-    public ResponseEntity<Map<String, String>> duplicateUsernameException(Exception ex, WebRequest request) {
+    @ExceptionHandler(value = {DuplicateUsernameException.class, EntityNotFoundException.class})
+    public ResponseEntity<Map<String, String>> badRequestException(Exception ex, WebRequest request) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", ex.getMessage()));
     }
 }

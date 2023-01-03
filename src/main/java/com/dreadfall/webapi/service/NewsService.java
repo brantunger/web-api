@@ -2,6 +2,7 @@ package com.dreadfall.webapi.service;
 
 import com.dreadfall.webapi.model.News;
 import com.dreadfall.webapi.repository.NewsRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class NewsService {
     public News findById(Long id) {
         final Optional<News> news = newsRepository.findById(id);
         if (news.isEmpty()) {
-            throw new RuntimeException(String.format("News story with id: %d doesn't exist!", id));
+            throw new EntityNotFoundException(String.format("News story with id: %d doesn't exist!", id));
         }
 
         return news.get();
@@ -36,7 +37,7 @@ public class NewsService {
     public News updateNews(Long id, News newsRequest) {
         final Optional<News> news = newsRepository.findById(id);
         if (news.isEmpty()) {
-            throw new RuntimeException(String.format("News story with id: %d doesn't exist!", id));
+            throw new EntityNotFoundException(String.format("News story with id: %d doesn't exist!", id));
         }
 
         news.get().setTitle(newsRequest.getTitle());
