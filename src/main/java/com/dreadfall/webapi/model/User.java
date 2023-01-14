@@ -24,23 +24,18 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USER_ID")
     private Long userId;
 
     @NotBlank
-    @Column(name = "USERNAME")
     private String username;
 
     @NotBlank
-    @Column(name = "PASSWORD")
     private String password;
 
     @NotBlank
-    @Column(name = "EMAIL")
     private String email;
 
     @NotBlank
-    @Column(name = "ROLE")
     private String role;
 
     @JsonIgnore

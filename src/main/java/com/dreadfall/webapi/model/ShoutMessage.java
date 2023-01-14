@@ -18,18 +18,14 @@ public class ShoutMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MESSAGE_ID")
     private Long messageId;
 
     @NotBlank
-    @Column(name = "USERNAME")
     private String username;
 
     @NotBlank
-    @Column(name = "MESSAGE")
     private String message;
 
     @CreatedDate
-    @Column(name = "DATE_CREATED")
     private Date dateCreated;
 }
