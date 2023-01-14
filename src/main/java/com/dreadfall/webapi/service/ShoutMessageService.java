@@ -24,8 +24,6 @@ public class ShoutMessageService {
         ShoutMessage shoutMessage = new ShoutMessage();
         shoutMessage.setUsername(shoutRequest.getName());
         shoutMessage.setMessage(shoutRequest.getMessage());
-//        shoutMessage.setDateCreated(new Date());
-
         shoutMessageRepository.save(shoutMessage);
     }
 }
