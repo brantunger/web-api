@@ -37,6 +37,11 @@ public class NewsController {
         return newsService.updateNews(id, news);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteNews(@PathVariable Long id) {
+        newsService.deleteNews(id);
+    }
+
     // TODO: Possibly refactor to use above put mapping?
     @PutMapping()
     public News updateVoteCount(@RequestParam("id") Long id, @RequestParam("voteCount") Long voteCount) {

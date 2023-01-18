@@ -3,6 +3,7 @@ package com.dreadfall.webapi.service;
 import com.dreadfall.webapi.model.News;
 import com.dreadfall.webapi.repository.NewsRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,6 +46,11 @@ public class NewsService {
         news.get().setVotes(newsRequest.getVotes());
 
         return newsRepository.save(news.get());
+    }
+
+    @Transactional
+    public void deleteNews(Long newsId) {
+        newsRepository.deleteByNewsId(newsId);
     }
 
     public News updateVoteCount(Long id, Long voteCount) {
