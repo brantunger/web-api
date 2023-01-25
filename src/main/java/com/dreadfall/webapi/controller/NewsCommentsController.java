@@ -1,6 +1,6 @@
 package com.dreadfall.webapi.controller;
 
-import com.dreadfall.webapi.model.dto.NewsCommentsDto;
+import com.dreadfall.webapi.model.dto.NewsCommentDto;
 import com.dreadfall.webapi.service.NewsCommentsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +20,7 @@ public class NewsCommentsController {
     }
 
     @GetMapping
-    public List<NewsCommentsDto> findAllByNewsId(@RequestParam(required = true) Long newsId) {
+    public List<NewsCommentDto> findAllByNewsId(@RequestParam(required = true) Long newsId) {
         return newsCommentsService.findAllByNewsId(newsId);
     }
 }

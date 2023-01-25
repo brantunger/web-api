@@ -17,7 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Table(name = "NEWS_COMMENTS")
 @EntityListeners(AuditingEntityListener.class)
-public class NewsComments {
+public class NewsComment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

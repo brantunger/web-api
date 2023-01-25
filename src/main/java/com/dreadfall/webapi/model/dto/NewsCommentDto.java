@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class NewsCommentsDto {
+public class NewsCommentDto {
 
     private Long commentId;
 
@@ -26,5 +27,6 @@ public class NewsCommentsDto {
 
     private Date dateCreated;
 
-    private List<NewsCommentsDto> comments;
+    @Builder.Default
+    private List<NewsCommentDto> comments = new ArrayList<>();
 }
