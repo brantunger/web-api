@@ -1,17 +1,21 @@
 package com.dreadfall.webapi.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Data
-@NoArgsConstructor
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "SHOUT_MESSAGE")
 @EntityListeners(AuditingEntityListener.class)
 public class ShoutMessage {

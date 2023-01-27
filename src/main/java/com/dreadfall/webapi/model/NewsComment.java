@@ -2,17 +2,18 @@ package com.dreadfall.webapi.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "NEWS_COMMENTS")
@@ -23,12 +24,10 @@ public class NewsComment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
 
-    @NotBlank
     private Long newsId;
 
     private Long parentId;
 
-    @NotBlank
     private String content;
 
     @CreatedBy

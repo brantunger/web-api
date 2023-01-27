@@ -4,6 +4,7 @@ import com.dreadfall.webapi.model.ShoutMessage;
 import com.dreadfall.webapi.request.ShoutRequest;
 import com.dreadfall.webapi.response.ShoutResponse;
 import com.dreadfall.webapi.service.ShoutMessageService;
+import jakarta.validation.Valid;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.HtmlUtils;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController

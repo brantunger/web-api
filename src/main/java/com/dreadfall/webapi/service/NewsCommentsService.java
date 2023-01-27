@@ -2,7 +2,9 @@ package com.dreadfall.webapi.service;
 
 import com.dreadfall.webapi.model.NewsComment;
 import com.dreadfall.webapi.model.dto.NewsCommentDto;
+import com.dreadfall.webapi.model.dto.request.CommentDeletion;
 import com.dreadfall.webapi.repository.NewsCommentsRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -47,6 +49,12 @@ public class NewsCommentsService {
         removalList.forEach(e -> finalCommentsList.remove(e.intValue()));
 
         return finalCommentsList;
+    }
+
+    @Transactional
+    public void deleteByNewsIdAndCommentIds(CommentDeletion commentDeletion) {
+        newsCommentsRepository.deleteByNewsIdAndCommentIds(commentDeletion.getNewsId(),
+                commentDeletion.getCommentIds());
     }
 
     private NewsCommentDto mapEntityToDto(NewsComment newsComment) {

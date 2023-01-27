@@ -6,9 +6,9 @@ import com.dreadfall.webapi.request.AuthenticationRequest;
 import com.dreadfall.webapi.response.AuthenticationResponse;
 import com.dreadfall.webapi.service.AuthenticationService;
 import com.dreadfall.webapi.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController

@@ -2,9 +2,9 @@ package com.dreadfall.webapi.controller;
 
 import com.dreadfall.webapi.model.News;
 import com.dreadfall.webapi.service.NewsService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
