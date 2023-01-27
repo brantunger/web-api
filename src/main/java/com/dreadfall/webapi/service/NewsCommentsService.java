@@ -2,7 +2,6 @@ package com.dreadfall.webapi.service;
 
 import com.dreadfall.webapi.model.NewsComment;
 import com.dreadfall.webapi.model.dto.NewsCommentDto;
-import com.dreadfall.webapi.model.dto.request.CommentDeletion;
 import com.dreadfall.webapi.repository.NewsCommentsRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Service
 public class NewsCommentsService {
@@ -52,9 +52,20 @@ public class NewsCommentsService {
     }
 
     @Transactional
-    public void deleteByNewsIdAndCommentIds(CommentDeletion commentDeletion) {
-        newsCommentsRepository.deleteByNewsIdAndCommentIds(commentDeletion.getNewsId(),
-                commentDeletion.getCommentIds());
+    public List<NewsCommentDto> deleteByNewsIdAndCommentIds(Long newsId, Long commentId) {
+        List<Long> idDeletionList = new CopyOnWriteArrayList<>(List.of(commentId));
+        newsCommentsRepository.findAllByNewsId(newsId)
+                .stream()
+                .sorted(Comparator.comparing(NewsComment::getCommentId))
+                .toList()
+                .forEach(newsComment ->
+                        idDeletionList.forEach(idToDelete -> {
+                            if (Objects.equals(newsComment.getParentId(), idToDelete)) {
+                                idDeletionList.add(newsComment.getCommentId());
+                            }
+                        }));
+        newsCommentsRepository.deleteByNewsIdAndCommentIds(newsId, idDeletionList);
+        return findAllByNewsId(newsId);
     }
 
     private NewsCommentDto mapEntityToDto(NewsComment newsComment) {

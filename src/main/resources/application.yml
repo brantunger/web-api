@@ -18,7 +18,7 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
 
 security:
-  secret: m8BhRrJz7NxCxHyyp14XKPwuvk89apIW8IN9w1rGTkDgRwE9HtRnWkWPv8kVklGT
+  secret: "m8BhRrJz7NxCxHyyp14XKPwuvk89apIW8IN9w1rGTkDgRwE9HtRnWkWPv8kVklGT"
 
 logging:
   level:

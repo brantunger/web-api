@@ -1,6 +1,8 @@
 package com.dreadfall.webapi.controller;
 
 import com.dreadfall.webapi.model.News;
+import com.dreadfall.webapi.model.dto.NewsCommentDto;
+import com.dreadfall.webapi.service.NewsCommentsService;
 import com.dreadfall.webapi.service.NewsService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +14,12 @@ import java.util.List;
 public class NewsController {
 
     private final NewsService newsService;
+    private final NewsCommentsService newsCommentsService;
 
-    public NewsController(NewsService newsService) {
+    public NewsController(NewsService newsService,
+                          NewsCommentsService newsCommentsService) {
         this.newsService = newsService;
+        this.newsCommentsService = newsCommentsService;
     }
 
     @GetMapping
@@ -46,5 +51,16 @@ public class NewsController {
     @PutMapping()
     public News updateVoteCount(@RequestParam("id") Long id, @RequestParam("voteCount") Long voteCount) {
         return newsService.updateVoteCount(id, voteCount);
+    }
+
+    @GetMapping("/{newsId}/comments")
+    public List<NewsCommentDto> findAllCommentsByNewsId(@PathVariable("newsId") Long newsId) {
+        return newsCommentsService.findAllByNewsId(newsId);
+    }
+
+    @DeleteMapping("/{newsId}/comments/{commentId}")
+    public List<NewsCommentDto> deleteByNewsIdAndCommentIds(@PathVariable("newsId") Long newsId,
+                                                            @PathVariable("commentId") Long commentId) {
+        return newsCommentsService.deleteByNewsIdAndCommentIds(newsId, commentId);
     }
 }
