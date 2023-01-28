@@ -48,7 +48,7 @@ public class NewsController {
     }
 
     // TODO: Possibly refactor to use above put mapping?
-    @PutMapping()
+    @PutMapping
     public News updateVoteCount(@RequestParam("id") Long id, @RequestParam("voteCount") Long voteCount) {
         return newsService.updateVoteCount(id, voteCount);
     }
@@ -56,6 +56,12 @@ public class NewsController {
     @GetMapping("/{newsId}/comments")
     public List<NewsCommentDto> findAllCommentsByNewsId(@PathVariable("newsId") Long newsId) {
         return newsCommentsService.findAllByNewsId(newsId);
+    }
+
+    @PostMapping("/{newsId}/comments")
+    public NewsCommentDto addComment(@PathVariable("newsId") Long newsId,
+                                     @RequestBody @Valid NewsCommentDto newsCommentDto) {
+        return newsCommentsService.addComment(newsId, newsCommentDto);
     }
 
     @DeleteMapping("/{newsId}/comments/{commentId}")

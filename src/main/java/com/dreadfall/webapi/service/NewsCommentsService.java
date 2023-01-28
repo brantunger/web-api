@@ -51,6 +51,14 @@ public class NewsCommentsService {
         return finalCommentsList;
     }
 
+    public NewsCommentDto addComment(Long newsId, NewsCommentDto newsCommentDto) {
+        NewsComment newsComment = NewsComment.builder()
+                .newsId(newsId)
+                .content(newsCommentDto.getContent())
+                .build();
+        return mapEntityToDto(newsCommentsRepository.save(newsComment));
+    }
+
     @Transactional
     public List<NewsCommentDto> deleteByNewsIdAndCommentIds(Long newsId, Long commentId) {
         List<Long> idDeletionList = new CopyOnWriteArrayList<>(List.of(commentId));

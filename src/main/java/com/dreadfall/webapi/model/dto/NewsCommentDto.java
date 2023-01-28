@@ -1,5 +1,6 @@
 package com.dreadfall.webapi.model.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class NewsCommentDto {
 
     private Long parentId;
 
+    @NotBlank
     private String content;
 
     private String createdBy;
