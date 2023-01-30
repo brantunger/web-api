@@ -59,7 +59,7 @@ public class NewsController {
     }
 
     @PostMapping("/{newsId}/comments")
-    public NewsCommentDto addComment(@PathVariable("newsId") Long newsId,
+    public List<NewsCommentDto> addComment(@PathVariable("newsId") Long newsId,
                                      @RequestBody @Valid NewsCommentDto newsCommentDto) {
         return newsCommentsService.addComment(newsId, newsCommentDto);
     }
@@ -68,5 +68,12 @@ public class NewsController {
     public List<NewsCommentDto> deleteByNewsIdAndCommentIds(@PathVariable("newsId") Long newsId,
                                                             @PathVariable("commentId") Long commentId) {
         return newsCommentsService.deleteByNewsIdAndCommentIds(newsId, commentId);
+    }
+
+    @PatchMapping("/{newsId}/comments/{commentId}")
+    public List<NewsCommentDto> editComment(@PathVariable("newsId") Long newsId,
+                                            @PathVariable("commentId") Long commentId,
+                                            @RequestBody @Valid NewsCommentDto newsCommentDto) {
+        return newsCommentsService.editComment(newsId, commentId, newsCommentDto);
     }
 }

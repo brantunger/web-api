@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,8 +27,10 @@ public class NewsCommentDto {
     @NotBlank
     private String content;
 
+    @CreatedBy
     private String createdBy;
 
+    @CreatedDate
     private Date dateCreated;
 
     @Builder.Default

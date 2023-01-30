@@ -51,12 +51,22 @@ public class NewsCommentsService {
         return finalCommentsList;
     }
 
-    public NewsCommentDto addComment(Long newsId, NewsCommentDto newsCommentDto) {
+    @Transactional
+    public List<NewsCommentDto> addComment(Long newsId, NewsCommentDto newsCommentDto) {
         NewsComment newsComment = NewsComment.builder()
                 .newsId(newsId)
+                .parentId(newsCommentDto.getParentId())
                 .content(newsCommentDto.getContent())
                 .build();
-        return mapEntityToDto(newsCommentsRepository.save(newsComment));
+        newsCommentsRepository.save(newsComment);
+        return findAllByNewsId(newsId);
+    }
+
+    @Transactional
+    public List<NewsCommentDto> editComment(Long newsId, Long commentId, NewsCommentDto newsCommentDto) {
+        NewsComment newsComment = mapDtoToEntity(newsCommentDto);
+        newsCommentsRepository.save(newsComment);
+        return findAllByNewsId(newsId);
     }
 
     @Transactional
@@ -84,6 +94,15 @@ public class NewsCommentsService {
                 .content(newsComment.getContent())
                 .createdBy(newsComment.getCreatedBy())
                 .dateCreated(newsComment.getDateCreated())
+                .build();
+    }
+
+    private NewsComment mapDtoToEntity(NewsCommentDto newsCommentDto) {
+        return NewsComment.builder()
+                .commentId(newsCommentDto.getCommentId())
+                .newsId(newsCommentDto.getNewsId())
+                .parentId(newsCommentDto.getParentId())
+                .content(newsCommentDto.getContent())
                 .build();
     }
 }
