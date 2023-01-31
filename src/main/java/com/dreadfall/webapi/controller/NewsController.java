@@ -37,7 +37,7 @@ public class NewsController {
         return newsService.addNews(news);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public News updateNews(@PathVariable Long id, @RequestBody @Valid News news) {
         return newsService.updateNews(id, news);
     }
