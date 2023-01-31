@@ -12,6 +12,9 @@ import java.util.List;
 @Repository
 public interface NewsCommentsRepository extends CrudRepository<NewsComment, Long> {
 
+    @Modifying
+    void deleteByNewsId(Long newsId);
+
     List<NewsComment> findAllByNewsId(Long newsId);
 
     @Modifying

@@ -1,6 +1,7 @@
 package com.dreadfall.webapi.service;
 
 import com.dreadfall.webapi.model.News;
+import com.dreadfall.webapi.repository.NewsCommentsRepository;
 import com.dreadfall.webapi.repository.NewsRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -13,9 +14,11 @@ import java.util.Optional;
 public class NewsService {
 
     private final NewsRepository newsRepository;
+    private final NewsCommentsRepository newsCommentsRepository;
 
-    public NewsService(NewsRepository newsRepository) {
+    public NewsService(NewsRepository newsRepository, NewsCommentsRepository newsCommentsRepository) {
         this.newsRepository = newsRepository;
+        this.newsCommentsRepository = newsCommentsRepository;
     }
 
     public News findById(Long id) {
@@ -51,6 +54,7 @@ public class NewsService {
     @Transactional
     public void deleteNews(Long newsId) {
         newsRepository.deleteByNewsId(newsId);
+        newsCommentsRepository.deleteByNewsId(newsId);
     }
 
     public News updateVoteCount(Long id, Long voteCount) {
