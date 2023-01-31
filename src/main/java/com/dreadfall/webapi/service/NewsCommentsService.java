@@ -64,7 +64,12 @@ public class NewsCommentsService {
 
     @Transactional
     public List<NewsCommentDto> editComment(Long newsId, Long commentId, NewsCommentDto newsCommentDto) {
-        NewsComment newsComment = mapDtoToEntity(newsCommentDto);
+        NewsComment newsComment = NewsComment.builder()
+                .newsId(newsId)
+                .commentId(commentId)
+                .parentId(newsCommentDto.getParentId())
+                .content(newsCommentDto.getContent())
+                .build();
         newsCommentsRepository.save(newsComment);
         return findAllByNewsId(newsId);
     }
@@ -103,6 +108,8 @@ public class NewsCommentsService {
                 .newsId(newsCommentDto.getNewsId())
                 .parentId(newsCommentDto.getParentId())
                 .content(newsCommentDto.getContent())
+                .createdBy(newsCommentDto.getCreatedBy())
+                .dateCreated(newsCommentDto.getDateCreated())
                 .build();
     }
 }
