@@ -25,6 +25,13 @@ public class UserService {
         return users;
     }
 
+    public User updateUser(User user) throws DuplicateUsernameException {
+        if (userRepository.findByUsernameOrEmail(user.getUsername(), user.getEmail()) != null)
+            throw new DuplicateUsernameException("Duplicate Username or Email");
+        user.setPassword(null);
+        return userRepository.save(user);
+    }
+
     public User save(User user) throws DuplicateUsernameException {
         if (userRepository.findByUsernameOrEmail(user.getUsername(), user.getEmail()) != null)
             throw new DuplicateUsernameException("Duplicate Username or Email");

@@ -28,8 +28,13 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @PatchMapping ("/{id}")
+    public User updateUser(@PathVariable("id") Long userId, @Valid @RequestBody User user) throws DuplicateUsernameException {
+        return userService.updateUser(user);
+    }
+
     @PostMapping(value = "/register")
-    public @ResponseBody User registerUser(@RequestBody @Valid User user) throws DuplicateUsernameException {
+    public User registerUser(@RequestBody @Valid User user) throws DuplicateUsernameException {
         return userService.save(user);
     }
 
