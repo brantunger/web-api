@@ -1,6 +1,7 @@
 package com.dreadfall.webapi.component;
 
 import org.springframework.data.domain.AuditorAware;
+import org.springframework.lang.NonNull;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +11,7 @@ import java.util.Optional;
 public class AuditorAwareComponent implements AuditorAware<String> {
 
     @Override
-    public Optional<String> getCurrentAuditor() {
+    public @NonNull Optional<String> getCurrentAuditor() {
         String user = SecurityContextHolder.getContext().getAuthentication() != null ?
                 SecurityContextHolder.getContext().getAuthentication().getName() : "Unknown";
         return Optional.ofNullable(user);

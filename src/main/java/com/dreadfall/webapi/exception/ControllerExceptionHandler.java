@@ -16,7 +16,7 @@ import java.util.Objects;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
-    //TODO: Make these consistent and return a list of errors?
+
     @ExceptionHandler(value = UnauthorizedException.class)
     public ResponseEntity<Map<String, String>> unauthorizedException(Exception ex) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", ex.getMessage()));
