@@ -28,20 +28,24 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @PatchMapping ("/{id}")
-    public User updateUser(@PathVariable("id") Long userId, @Valid @RequestBody User user) throws DuplicateUsernameException {
+    @PatchMapping
+    public User updateUser(@Valid @RequestBody User user) {
         return userService.updateUser(user);
     }
 
-    @PostMapping(value = "/register")
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable("id") Long userId) {
+        userService.deleteUser(userId);
+    }
+
+    @PostMapping("/register")
     public User registerUser(@RequestBody @Valid User user) throws DuplicateUsernameException {
         return userService.save(user);
     }
 
-    @PostMapping(value = "/authenticate")
+    @PostMapping("/authenticate")
     public AuthenticationResponse createAuthenticationToken(@RequestBody @Valid AuthenticationRequest authenticationRequest) {
         final String token = authenticationService.authenticate(authenticationRequest);
         return new AuthenticationResponse(token, authenticationRequest.getUsername());
     }
-
 }
