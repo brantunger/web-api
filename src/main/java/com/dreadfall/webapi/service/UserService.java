@@ -23,9 +23,7 @@ public class UserService {
     }
 
     public List<User> getAllUsers() {
-        List<User> users = userRepository.findAll();
-        users.forEach(user -> user.setPassword("PROTECTED"));
-        return users;
+        return userRepository.findAll();
     }
 
     public User updateUser(User user) {
